@@ -66,25 +66,55 @@ html, body {
 
 .add-item-container {
     display: flex;
+    flex-direction: row;
+}
+
+.add-item-buttons {
+    display: flex;
     flex-direction: column;
 }
 
 .add-item-ok {
     background-color: black;
+    flex-grow: 3;
     color: green;
 }
 
 .add-item-ko {
     background-color: black;
     color: red;
+    flex-grow: 3;
 }
 
 .add-item-card {
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.add-item-buttons {
+    display: flex;
+    flex-direction: row;
 }
 
 .add-item-tags-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+}
+
+.manage-tags {
+    display: flex;
+    text-align: center;
+}
+
+.add-tag {
+    flex-grow: 3;
+}
+
+.remove-tag {
+    flex-grow: 3;
+}
+
+.spacer-6 {
+    flex-grow: 6;
 }

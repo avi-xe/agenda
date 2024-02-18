@@ -9,16 +9,19 @@
   </head>
   <body onload="onload()">
     <h1 class="title">My Agenda</h1>
-    <div class="add-tag" id="add-tag">Create a New Tag</div>
+    <div class="manage-tags" class="manage-tags">
+      <div class="add-tag" id="add-tag">Create a New Tag</div>
+      <div class="spacer-6"></div>
+      <div class="remove-tag" id="remove-tag">Delete a Tag</div>
+    </div>
     <div class="container">
-      <div class="item-container" id="item-container">
-        <div class="add-item-frame" id="add-item-frame">
-          <div onclick="addItem()" id="add-item-button">Create a new Item</div>
-        </div>
-      </div>
+      <div class="item-container" id="item-container"></div>
       <div class="details-container" id="details-container">
         <div class="details" id="details">No Item Selected!</div>
       </div>
+    </div>
+    <div class="add-item-frame" id="add-item-frame">
+      <div onclick="addItem()" id="add-item-button">Create a new Item</div>
     </div>
   </body>
 </html>
