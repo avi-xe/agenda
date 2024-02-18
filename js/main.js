@@ -93,10 +93,12 @@ function createAddItemContainer(elAddItemCard) {
   var title = document.createElement("input");
   title.placeholder = "Title";
   title.id = "add-item-container-title";
+  title.classList.add("add-item-container-title");
 
   var description = document.createElement("input");
   description.placeholder = "Description";
   description.id = "add-item-container-description";
+  description.classList.add("add-item-container-description");
 
   var elAddItemTagsContainer = document.createElement("div");
   elAddItemTagsContainer.classList.add("add-item-tags-container");

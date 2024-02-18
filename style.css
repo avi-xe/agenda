@@ -53,15 +53,24 @@ html, body {
 .tag-group {
     background-color: brown;
     display: flex;
+    margin: 0.2rem;
 }
 
 .tag {
     color: white;
+    margin: 0.2rem;
 }
 
 .add-item-frame {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    text-align: center;
+}
+
+.add-item-button {
+    display: flex;
+    text-align: center;
 }
 
 .add-item-container {
@@ -69,20 +78,41 @@ html, body {
     flex-direction: row;
 }
 
+.add-item-container-title {
+    flex-grow: 1;
+    margin: 0.5rem;
+}
+
+.add-item-container-description {
+    flex-grow: 2;
+    margin: 0.5rem;
+}
+
+.add-item-chosen-tags {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 4;
+    flex-grow: 4;
+    margin: 0.2rem;
+}
+
 .add-item-buttons {
     display: flex;
     flex-direction: column;
+    margin: 0.2rem;
 }
 
 .add-item-ok {
     background-color: black;
     flex-grow: 3;
+    margin: 0.5rem;
     color: green;
 }
 
 .add-item-ko {
     background-color: black;
     color: red;
+    margin: 0.5rem;
     flex-grow: 3;
 }
 
