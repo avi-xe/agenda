@@ -20,61 +20,108 @@ class DataModel {
 var items = [];
 var tags = [];
 
-function addItem() {
-  var elAddItemContainer = document.getElementById("add-item-container");
-  var elAddItemButton = document.getElementById("add-item-button");
+function onload() {
+  setupAddTagsListener();
+}
 
-  var elAddItemCard = document.createElement("div");
-
-  var elAddItemTitle = document.createElement("input");
-  elAddItemTitle.placeholder = "Title";
-
-  var elAddItemDescription = document.createElement("input");
-  elAddItemDescription.placeholder = "Description";
-
-  var elAddItemTags = createTagDropdown();
-
-  var elAddItemTagsAdd = document.createElement("div");
-  elAddItemTagsAdd.textContent = "Create a New Tag";
-  elAddItemTagsAdd.addEventListener("click", () => {
+function setupAddTagsListener() {
+  var el = document.getElementById("add-tag");
+  el.addEventListener("click", function listener() {
     const newTag = window.prompt("Add a New Tag", "tag name");
+    if (newTag == null) {
+      console.log("canceled");
+      return;
+    }
+
     if (tags.includes(newTag)) {
       console.log("tag already in list:", newTag);
     } else {
       tags.push(newTag);
-      elAddItemCard.replaceChild(
-        createTagDropdown(),
-        document.getElementById("add-item-tags")
-      );
+      var elAddItemTags = document.getElementById("add-item-tags");
+      if (elAddItemTags != null) {
+        elAddItemTags.replaceWith(createTagsContainer());
+      }
     }
   });
-
-  var elAddItemOK = document.createElement("div");
-  elAddItemOK.textContent = "OK";
-  elAddItemOK.classList.add("add-item-ok");
-  elAddItemOK.addEventListener("click", () => {
-    addRegularItem(elAddItemTitle.value, elAddItemDescription.value);
-    elAddItemContainer.replaceChild(elAddItemButton, elAddItemCard);
-  });
-
-  var elAddItemKO = document.createElement("div");
-  elAddItemKO.textContent = "KO";
-  elAddItemKO.classList.add("add-item-ko");
-  elAddItemKO.addEventListener("click", () => {
-    elAddItemContainer.replaceChild(elAddItemButton, elAddItemCard);
-  });
-
-  elAddItemCard.appendChild(elAddItemTitle);
-  elAddItemCard.appendChild(elAddItemDescription);
-  elAddItemCard.appendChild(elAddItemTags);
-  elAddItemCard.appendChild(elAddItemTagsAdd);
-  elAddItemCard.appendChild(elAddItemOK);
-  elAddItemCard.appendChild(elAddItemKO);
-
-  elAddItemContainer.replaceChild(elAddItemCard, elAddItemButton);
 }
 
-function createTagDropdown() {
+function addItem() {
+  var elAddItemButton = document.getElementById("add-item-button");
+
+  var elAddItemCard = document.createElement("div");
+  elAddItemCard.classList.add("add-item-card");
+
+  var elAddItemContainer = createAddItemContainer(elAddItemCard);
+  var elAddItemButtons = createAddItemButtons(
+    elAddItemCard,
+    elAddItemButton,
+    elAddItemContainer
+  );
+
+  elAddItemCard.appendChild(elAddItemContainer);
+  elAddItemCard.appendChild(elAddItemButtons);
+
+  elAddItemButton.replaceWith(elAddItemCard);
+}
+
+function createAddItemContainer(elAddItemCard) {
+  var container = document.createElement("div");
+  container.classList.add("add-item-container");
+  container.id = "add-item-container";
+  var title = document.createElement("input");
+  title.placeholder = "Title";
+  title.id = "add-item-container-title";
+
+  var description = document.createElement("input");
+  description.placeholder = "Description";
+  description.id = "add-item-container-description";
+
+  var tags = createTagsContainer(elAddItemCard);
+
+  container.appendChild(title);
+  container.appendChild(description);
+  container.appendChild(tags);
+
+  return container;
+}
+
+function createAddItemButtons(
+  elAddItemCard,
+  elAddItemButton,
+  elAddItemContainer
+) {
+  var buttons = document.createElement("div");
+  var ok = document.createElement("div");
+  ok.textContent = "OK";
+  ok.classList.add("add-item-ok");
+  ok.addEventListener("click", () => {
+    var title = elAddItemContainer.querySelector(
+      "#add-item-container-title"
+    ).value;
+    var description = elAddItemContainer.querySelector(
+      "#add-item-container-description"
+    ).value;
+    addRegularItem(title, description);
+    elAddItemCard.replaceWith(elAddItemButton);
+  });
+
+  var ko = document.createElement("div");
+  ko.textContent = "KO";
+  ko.classList.add("add-item-ko");
+  ko.addEventListener("click", () => {
+    elAddItemCard.replaceWith(elAddItemButton);
+  });
+
+  buttons.appendChild(ok);
+  buttons.appendChild(ko);
+
+  return buttons;
+}
+
+function createTagsContainer() {
+  var elAddItemTagsContainer = document.createElement("div");
+  elAddItemTagsContainer.classList.add("add-item-tags-container");
+  elAddItemTagsContainer.id = "add-item-tags-container";
   var elAddItemTags = document.createElement("select");
   var elAddItemTagsPlaceholder = document.createElement("option");
   elAddItemTags.id = "add-item-tags";
@@ -91,7 +138,9 @@ function createTagDropdown() {
   } else {
     elAddItemTagsPlaceholder.textContent = "Please add a Tag";
   }
-  return elAddItemTags;
+
+  elAddItemTagsContainer.appendChild(elAddItemTags);
+  return elAddItemTagsContainer;
 }
 
 function addTestItem() {

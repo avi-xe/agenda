@@ -59,9 +59,14 @@ html, body {
     color: white;
 }
 
-.add-item-container {
+.add-item-frame {
     display: flex;
     flex-direction: row;
+}
+
+.add-item-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .add-item-ok {
@@ -72,4 +77,14 @@ html, body {
 .add-item-ko {
     background-color: black;
     color: red;
+}
+
+.add-item-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-item-tags-container {
+    display: flex;
+    flex-direction: row;
 }
