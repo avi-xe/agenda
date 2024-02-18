@@ -1,0 +1,75 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.title {
+    color: blue;
+    text-align: center;
+}
+
+.container {
+    background-color: pink;
+    display: flex;
+}
+
+.item-container {
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 0.5rem;
+}
+
+.item-card {
+    background-color: blue;
+    margin: 0.2rem;
+    display: flex;
+}
+
+.item {
+    background-color: azure;
+    display: flex;
+    flex-grow: 5;
+    width: 100%;
+    margin: 0.2rem;
+}
+
+.item-remove {
+    background-color: red;
+    color: white;
+    display: flex;
+    flex-grow: 1;
+}
+
+.details-container {
+    background-color: greenyellow;
+    display: flex;
+    flex-grow: 2;
+    margin: 0.5rem;
+}
+
+.tag-group {
+    background-color: brown;
+    display: flex;
+}
+
+.tag {
+    color: white;
+}
+
+.add-item-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.add-item-ok {
+    background-color: black;
+    color: green;
+}
+
+.add-item-ko {
+    background-color: black;
+    color: red;
+}
